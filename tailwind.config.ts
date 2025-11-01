@@ -87,5 +87,20 @@ export default {
       },
     },
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [
+    require("tailwindcss-animate"),
+    function({ addUtilities }: any) {
+      const newUtilities = {
+        '.transform-gpu': {
+          transform: 'translateZ(0)',
+          '-webkit-transform': 'translateZ(0)',
+          'will-change': 'transform',
+        },
+        '.scroll-smooth': {
+          'scroll-behavior': 'smooth',
+        },
+      }
+      addUtilities(newUtilities)
+    },
+  ],
 } satisfies Config;
